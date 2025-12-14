@@ -481,31 +481,6 @@
   })();
 
 
-  // ===== Mobile burger menu =====
-  (() => {
-    const btn = document.getElementById('navToggle');
-    const nav = document.getElementById('primaryNav');
-    if (!btn || !nav) return;
-
-    const setOpen = (open) => {
-      nav.classList.toggle('open', open);
-      btn.classList.toggle('open', open);
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    };
-
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setOpen(!nav.classList.contains('open'));
-    });
-
-    document.addEventListener('click', () => setOpen(false));
-    document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
-
-    nav.addEventListener('click', (e) => {
-      if (e.target.closest('a')) setOpen(false);
-    });
-  })();
 </script>
 
 

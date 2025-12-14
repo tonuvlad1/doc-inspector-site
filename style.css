@@ -145,33 +145,6 @@ body {
 }
 
 
-/* ====== Language switcher ====== */
-.lang-switcher {
-    display: flex;
-    gap: 0.25rem;
-    font-size: 0.78rem;
-}
-
-.lang-switcher button {
-    border-radius: 999px;
-    border: 1px solid rgba(127, 206, 255, 0.5);
-    background: transparent;
-    color: #cfe8ff;
-    padding: 0.15rem 0.55rem;
-    cursor: pointer;
-    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
-}
-
-.lang-switcher button.active {
-    background: linear-gradient(135deg, #1de0ff, #ffb347);
-    color: #021019;
-    border-color: transparent;
-}
-
-.lang-switcher button:hover:not(.active) {
-    background: rgba(255, 171, 92, 0.16);
-    border-color: rgba(255, 158, 80, 0.9);
-}
 
 /* ====== Hero ====== */
 .hero {
@@ -1426,20 +1399,6 @@ body {
 
 
 
-/* ===== Mobile nav / language controls (v2) ===== */
-.navbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap: 16px;
-}
-.nav-actions{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap: 10px;
-  margin-left:auto;
-}
 
 /* Burger */
 .nav-toggle{

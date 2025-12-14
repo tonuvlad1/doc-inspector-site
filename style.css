@@ -49,6 +49,7 @@ body {
     justify-content: space-between;
     height: 64px;
     gap: 1rem;
+    position: relative;
 }
 
 .brand {
@@ -125,6 +126,46 @@ body {
 
 .nav-links a:hover::after {
     width: 100%;
+}
+
+
+/* ====== Mobile nav toggle (hamburger) ====== */
+.nav-toggle{
+    display: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    border: 1px solid rgba(127, 206, 255, 0.35);
+    background: rgba(6, 21, 39, 0.55);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 10px;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.55);
+    transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+}
+.nav-toggle:hover{
+    border-color: rgba(255, 158, 80, 0.85);
+    background: rgba(255, 158, 80, 0.08);
+    transform: translateY(-1px);
+}
+.nav-toggle-bar{
+    display:block;
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(207,232,255,0.92);
+    transition: transform 0.14s ease, opacity 0.14s ease;
+}
+.nav-toggle.open .nav-toggle-bar:nth-child(1){
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open .nav-toggle-bar:nth-child(2){
+    opacity: 0;
+}
+.nav-toggle.open .nav-toggle-bar:nth-child(3){
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ====== Language switcher ====== */
@@ -395,16 +436,16 @@ body {
 
 .module-header {
     display: flex;
-    align-items: flex-start;   /* ca icon-ul mai mare să se alinieze frumos sus */
-    gap: 1rem;
-    margin-bottom: 0.9rem;     /* mai mult spațiu față de textul de jos */
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.7rem;
 }
 
-/* icon pătrat MARE, comun pentru home + user-guide */
+/* big icon square – fill with image, no colored bg */
 .module-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -419,30 +460,23 @@ body {
     object-fit: contain;
 }
 
-
 .module-title {
-    font-size: 1.18rem;          /* mai mare */
-    font-weight: 650;
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    margin-bottom: 0.15rem;      /* mic spațiu față de tagline */
+    font-size: 1.02rem;
+    font-weight: 600;
 }
 
 .module-tagline {
-    font-size: 0.82rem;
-    line-height: 1.35;
-    color: rgba(149, 181, 221, 0.68);  /* mai „șters” decât titlul */
+    font-size: 0.8rem;
+    color: rgba(149, 181, 221, 0.7);
     transition: color 0.18s ease, opacity 0.18s ease;
 }
 
-/* baretă de separare mai jos, ca să taie clar header-ul de conținut */
 .module-divider {
     height: 1px;
     width: 100%;
-    margin: 0.9rem 0 0.6rem;
-    background: linear-gradient(90deg, rgba(255,158,80,0.9), transparent);
+    margin: 0.7rem 0 0.5rem;
+    background: linear-gradient(90deg, rgba(255,158,80,0.8), transparent);
 }
-
 
 /* feature list – stacked cards for readability */
 .feature-list {
@@ -512,11 +546,6 @@ body {
     opacity: 1;
 }
 
-
-.module-card:hover .module-title {
-    text-shadow: 0 0 14px rgba(255, 180, 110, 0.55);
-}
-
 /* ascundem meta ca să nu fie prea mult text mic */
 .feature-meta {
     display: none;
@@ -571,9 +600,8 @@ body {
 
 .workflow-image {
     justify-self: end;
-    max-width: 480px;   /* sau 480px dacă vrei mai compact */
+    max-width: 360px;
 }
-
 
 .workflow-image img {
     width: 100%;
@@ -827,382 +855,30 @@ body {
 @media (max-width: 720px) {
     .guide-intro-card {
         padding: 1.1rem 1rem 1.2rem;
+    
+    .container{
+        padding: 0 1rem;
     }
+    .hero-screenshot{
+        max-width: 100%;
+    }
+    .section{
+        padding: 2.25rem 0 1.75rem;
+    }
+    .btn-row{
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    .btn{
+        width: 100%;
+        justify-content: center;
+    }
+
+}
     .guide-card {
         padding: 1rem;
     }
 }
-
-
-/* ====== Pricing page ====== */
-.pricing-main {
-    padding: 3rem 0 3.5rem;
-}
-
-.pricing-header h1 {
-    font-size: 1.8rem;
-    margin-bottom: 0.6rem;
-}
-
-.pricing-header p {
-    font-size: 0.95rem;
-    color: #c5ddff;
-    max-width: 40rem;
-    margin-bottom: 1.2rem;
-}
-
-.pricing-pill-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-}
-
-.pricing-pill {
-    font-size: 0.8rem;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid rgba(122, 226, 255, 0.55);
-    background: radial-gradient(circle at top left, rgba(29, 224, 255, 0.18), rgba(4, 20, 36, 0.95));
-    color: #d0ecff;
-}
-
-.pricing-pill.subtle {
-    border-color: rgba(115, 166, 210, 0.8);
-    background: radial-gradient(circle at top left, rgba(40, 81, 133, 0.3), rgba(4, 16, 30, 0.95));
-}
-
-/* grid cu două carduri (Basic / Pro) */
-.pricing-grid {
-    margin-top: 2.2rem;
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.7rem;
-}
-
-@media (max-width: 900px) {
-    .pricing-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-.pricing-card {
-    position: relative;
-    border-radius: 20px;
-    padding: 1.6rem 1.5rem 1.5rem;
-    background: radial-gradient(circle at top left, #142741 0, #071523 55%, #050c16 100%);
-    border: 1px solid rgba(45, 118, 165, 0.7);
-    box-shadow:
-        0 20px 50px rgba(0,0,0,0.95),
-        0 0 0 1px rgba(255,255,255,0.04);
-    overflow: hidden;
-    transition:
-        transform 0.22s ease,
-        box-shadow 0.22s ease,
-        border-color 0.22s ease,
-        background 0.22s ease;
-}
-
-.pricing-card::before {
-    content: "";
-    position: absolute;
-    inset: -40%;
-    opacity: 0.05;
-    background: radial-gradient(circle at top left, #1de0ff 0, transparent 55%);
-    pointer-events: none;
-}
-
-.pricing-card:hover {
-    transform: translateY(-6px) scale(1.015);
-    box-shadow:
-        0 32px 80px rgba(0,0,0,0.98),
-        0 0 30px rgba(255, 158, 80, 0.55);
-    border-color: rgba(255, 158, 80, 0.95);
-    background: radial-gradient(circle at top left, #193155 0, #071321 55%, #040a15 100%);
-}
-
-.pricing-card-header {
-    margin-bottom: 0.9rem;
-}
-
-.pricing-plan-name {
-    font-size: 1.25rem;
-    font-weight: 650;
-    letter-spacing: 0.02em;
-    margin-bottom: 0.1rem;
-}
-
-.pricing-plan-tagline {
-    font-size: 0.85rem;
-    color: rgba(184, 210, 244, 0.85);
-}
-
-.pricing-price {
-    margin-top: 0.3rem;
-    margin-bottom: 0.9rem;
-}
-
-.pricing-price-value {
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.pricing-price-label {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    color: rgba(197, 221, 255, 0.9);
-    margin-top: 0.1rem;
-}
-
-.pricing-price-note {
-    font-size: 0.75rem;
-    color: rgba(175, 203, 238, 0.75);
-    margin-top: 0.25rem;
-}
-
-.pricing-divider {
-    height: 1px;
-    width: 100%;
-    margin: 0.7rem 0 0.8rem;
-    background: linear-gradient(90deg, rgba(255,158,80,0.85), transparent);
-}
-
-/* grupuri de features */
-.pricing-feature-group {
-    margin-bottom: 0.7rem;
-}
-
-.pricing-group-title {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: rgba(192, 219, 255, 0.9);
-    margin-bottom: 0.35rem;
-}
-
-.pricing-feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.45rem;
-    font-size: 0.84rem;
-    padding: 0.25rem 0;
-}
-
-.pf-icon {
-    width: 18px;
-    flex-shrink: 0;
-    text-align: center;
-    margin-top: 0.05rem;
-}
-
-.pf-text {
-    color: #c5ddff;
-}
-
-.pricing-feature.included .pf-icon {
-    color: #4ff3a4;
-}
-
-.pricing-feature.not-included {
-    opacity: 0.5;
-}
-
-.pricing-feature.not-included .pf-icon {
-    color: #d8785e;
-}
-
-.pricing-feature.highlight {
-    padding: 0.45rem 0.6rem;
-    margin: 0.15rem -0.6rem 0;
-    border-radius: 12px;
-    background: radial-gradient(circle at top left, rgba(255, 179, 71, 0.24), rgba(5, 26, 47, 0.95));
-    border: 1px solid rgba(255, 158, 80, 0.85);
-}
-
-/* badge "most popular" pe Pro */
-.pricing-card-pro {
-    border-color: rgba(255, 158, 80, 0.9);
-}
-
-.pricing-badge {
-    position: absolute;
-    top: 0.85rem;
-    right: 1.1rem;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    padding: 0.25rem 0.7rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #ffb347, #ff7b4a);
-    color: #1b1010;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.9);
-    animation: pricingBadgePulse 3s ease-in-out infinite;
-}
-
-@keyframes pricingBadgePulse {
-    0%, 100% { transform: translateY(0); opacity: 1; }
-    50% { transform: translateY(-2px); opacity: 0.9; }
-}
-
-.pricing-cta {
-    margin-top: 0.9rem;
-}
-
-/* text de sub grilă */
-.pricing-footnote {
-    margin-top: 2.1rem;
-    font-size: 0.8rem;
-    color: #9db7da;
-    max-width: 40rem;
-}
-
-/* nav link activ pe "Price" */
-.nav-links a.active {
-    color: #ffffff;
-}
-.nav-links a.active::after {
-    width: 100%;
-}
-
-
-/* ====== Billing toggle (monthly / yearly) ====== */
-.billing-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    margin: 0.5rem 0 0.9rem;
-    padding: 0.25rem 0.4rem;
-    border-radius: 999px;
-    background: rgba(4, 18, 32, 0.9);
-    border: 1px solid rgba(87, 155, 204, 0.7);
-}
-
-.billing-label {
-    font-size: 0.78rem;
-    color: #cfe3ff;
-    padding: 0 0.4rem 0 0.2rem;
-    opacity: 0.9;
-}
-
-.billing-btn {
-    border: none;
-    border-radius: 999px;
-    font-size: 0.78rem;
-    padding: 0.3rem 0.8rem;
-    background: transparent;
-    color: #bcd5ff;
-    cursor: pointer;
-    transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
-}
-
-.billing-btn .billing-save {
-    font-size: 0.7rem;
-    margin-left: 0.25rem;
-    color: #ffe5c0;
-}
-
-.billing-btn.active {
-    background: linear-gradient(135deg, #1de0ff, #ffb347);
-    color: #020b13;
-    transform: translateY(-1px);
-}
-
-.billing-btn:hover:not(.active) {
-    background: rgba(255, 171, 92, 0.16);
-    color: #ffffff;
-}
-
-/* ====== Company / teams section ====== */
-.pricing-company {
-    margin-top: 4.5rem;              /* împinge secțiunea mai jos față de cardurile de sus */
-    padding-top: 2.2rem;             /* „respirație” internă sus */
-    border-top: 1px solid rgba(255,255,255,0.04);
-}
-
-.pricing-company h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.3rem;
-}
-
-.pricing-company p {
-    font-size: 0.88rem;
-    color: #c8e0ff;
-    max-width: 40rem;
-    margin-bottom: 1rem;
-}
-
-.company-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.3rem;
-}
-
-@media (max-width: 900px) {
-    .company-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-}
-
-.company-card {
-    border-radius: 16px;
-    padding: 1rem 1rem 1.1rem;
-    background: radial-gradient(circle at top left, #15263d 0, #071322 55%, #040a15 100%);
-    border: 1px solid rgba(53, 123, 173, 0.8);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.9);
-    font-size: 0.82rem;
-    color: #cfe3ff;
-    position: relative;
-    overflow: hidden;
-}
-
-.company-card::before {
-    content: "";
-    position: absolute;
-    inset: -40%;
-    opacity: 0.05;
-    background: radial-gradient(circle at top left, #1de0ff 0, transparent 55%);
-    pointer-events: none;
-}
-
-.company-title {
-    font-size: 0.98rem;
-    font-weight: 600;
-    margin-bottom: 0.15rem;
-}
-
-.company-sub {
-    font-size: 0.78rem;
-    color: #ffd9a5;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    margin-bottom: 0.5rem;
-}
-
-.company-card p {
-    font-size: 0.8rem;
-    color: #d6e6ff;
-    margin-bottom: 0.5rem;
-}
-
-.company-card ul {
-    list-style: none;
-    padding-left: 0;
-    display: grid;
-    gap: 0.25rem;
-}
-
-.company-card ul li::before {
-    content: "• ";
-    color: #1de0ff;
-}
-
-.company-cta {
-    margin-top: 2.1rem;   /* puțin mai jos sub carduri */
-}
-
-
-
 
 /* ====== Responsive layout ====== */
 @media (max-width: 1100px) {
@@ -1228,9 +904,36 @@ body {
     .navbar {
         flex-wrap: wrap;
     }
-    .nav-links {
-        display: none; /* simplu pe mobil; îl facem burger mai târziu */
+
+    .nav-toggle{
+        display: inline-flex;
+        margin-left: auto;
     }
+    .nav-links{
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 64px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+        padding: 0.95rem 1rem 1.05rem;
+        background: linear-gradient(to bottom, rgba(6, 21, 39, 0.98), rgba(5, 16, 30, 0.92));
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 18px;
+        box-shadow: 0 28px 70px rgba(0,0,0,0.92);
+        backdrop-filter: blur(18px);
+    }
+    .nav-links.open{
+        display: flex;
+        animation: navDrop 120ms ease-out;
+    }
+    .nav-links a{
+        padding: 0.55rem 0.35rem;
+        font-size: 0.95rem;
+    }
+
 }
 
 @media (max-width: 720px) {

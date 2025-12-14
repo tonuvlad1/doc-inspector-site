@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>DocInspector – Document Manager, Repair & Audit Suite</title>
+    <title>DocInspector Pro – Document Manager, Repair & Audit Suite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/png" href="assets/logo.png" />
@@ -15,23 +15,29 @@
     <header class="site-header">
         <div class="container navbar">
             <!-- Brand = link to home -->
-            <a href="index.html" class="brand">
+            <a href="#home" class="brand">
                 <div class="brand-logo">
-                    <img src="assets/logo.png" alt="DocInspector logo">
+                    <img src="assets/logo.png" alt="DocInspector Pro logo">
                 </div>
                 <div class="brand-text">
-                    <div class="brand-name">DocInspector</div>
+                    <div class="brand-name">DocInspector Pro</div>
                     <div class="brand-subtitle">Document Manager, Repair &amp; Audit Suite</div>
                 </div>
             </a>
 
-            <nav class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="price.html">Price</a>
+            <nav class="nav-links" id="primaryNav">
+                <a href="#home">Home</a>
+                <a href="#modules">Modules</a>
                 <a href="user-guide.html">User Guide</a>
                 <a href="reports.html">Reports &amp; Feedback</a>
                 <a href="contact.html">Contact</a>
             </nav>
+
+            <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
 
             <div class="lang-switcher">
                 <button class="active">EN</button>
@@ -63,9 +69,8 @@
                 </ul>
 
                 <div class="button-row" id="download">
-                <a href="#" class="btn btn-primary">Download trial</a>
-		<a href="price.html" class="btn btn-outline">View pricing</a>
-
+                    <a href="#" class="btn btn-primary">Download trial</a>
+                    <a href="#" class="btn btn-outline">Buy license</a>
                 </div>
                 <div class="hero-footnote">
                     No always-on agent. Runs on demand, produces exportable logs and reports.
@@ -330,10 +335,8 @@
             </div>
 
             <div class="workflow-image">
-    <img src="assets/happymen.png"
-         alt="Calm professional working with documents efficiently using DocInspector Pro">
-</div>
-
+                <img src="assets/workflow-docs.png" alt="Many documents being consolidated into a clean bundle">
+            </div>
         </div>
     </section>
 
@@ -373,26 +376,14 @@
 
 </div>
 
-
-
 <!-- MODAL GUI – MULTIPLE IMAGES + SCROLL -->
 <div class="modal-backdrop" id="screenshotModal">
     <div class="modal-image-wrapper">
         <div class="modal-images">
-            	<img src="assets/gui-main.png" alt="DocInspector Pro interface screenshot 1">
-            	<img src="assets/gui-main1.png" alt="DocInspector Pro interface screenshot 2">
-            	<img src="assets/gui-main2.png" alt="DocInspector Pro interface screenshot 3">
-        	<img src="assets/gui-main3.png" alt="DocInspector Pro interface screenshot 4">
-		<img src="assets/gui-main4.png" alt="DocInspector Pro interface screenshot 5">
-		<img src="assets/gui-main5.png" alt="DocInspector Pro interface screenshot 6">
-		<img src="assets/gui-main6.png" alt="DocInspector Pro interface screenshot 7">
-		<img src="assets/gui-main7.png" alt="DocInspector Pro interface screenshot 8">
-		<img src="assets/gui-main8.png" alt="DocInspector Pro interface screenshot 9">
-		<img src="assets/gui-main9.png" alt="DocInspector Pro interface screenshot 10">
-		<img src="assets/gui-main10.png" alt="DocInspector Pro interface screenshot 11">
-		<img src="assets/gui-main11.png" alt="DocInspector Pro interface screenshot 12">
-
-</div>
+            <img src="assets/gui-main.png" alt="DocInspector Pro interface screenshot 1">
+            <img src="assets/gui-step2.png" alt="DocInspector Pro interface screenshot 2">
+            <img src="assets/gui-step3.png" alt="DocInspector Pro interface screenshot 3">
+        </div>
     </div>
 </div>
 
@@ -400,31 +391,18 @@
     const screenshot = document.getElementById('guiScreenshot');
     const modal = document.getElementById('screenshotModal');
 
-    // --- HERO SLIDER LOGIC (din imaginile din modal) ---
+    // Hero GUI slider
     const heroImage = screenshot ? screenshot.querySelector('img') : null;
-
-    // luăm toate imaginile din modal și le folosim ca slide-uri
-    let heroSlides = [];
-    if (modal) {
-        heroSlides = Array.from(
-            modal.querySelectorAll('.modal-images img')
-        ).map(img => ({
-            src: img.getAttribute('src'),
-            alt: img.getAttribute('alt') || ''
-        }));
-    }
-
+    const heroSlides = [
+        { src: 'assets/gui-main.png',  alt: 'DocInspector Pro main interface' },
+        { src: 'assets/gui-step2.png', alt: 'DocInspector Pro – processing screen' },
+        { src: 'assets/gui-step3.png', alt: 'DocInspector Pro – reporting screen' }
+    ];
     let heroIndex = 0;
 
-    // dacă avem mai mult de 1 imagine => facem slider
     if (heroImage && heroSlides.length > 1) {
-        // setăm prima imagine din listă
-        heroImage.src = heroSlides[0].src;
-        heroImage.alt = heroSlides[0].alt;
-
         setInterval(() => {
             heroIndex = (heroIndex + 1) % heroSlides.length;
-
             heroImage.classList.add('fade-out');
 
             setTimeout(() => {
@@ -432,17 +410,15 @@
                 heroImage.alt = heroSlides[heroIndex].alt;
                 heroImage.classList.remove('fade-out');
             }, 220);
-        }, 6000); // 6 secunde
+        }, 3000);
     }
-    // dacă heroSlides.length === 1 sau 0, imaginea rămâne statică
 
-    // --- MODAL OPEN/CLOSE ---
     if (screenshot && modal) {
         screenshot.addEventListener('click', () => modal.classList.add('active'));
         modal.addEventListener('click', () => modal.classList.remove('active'));
     }
 
-    // --- Language switcher vizual ---
+    // Language switcher visual state
     document.querySelectorAll('.lang-switcher button').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
@@ -451,6 +427,35 @@
     });
 </script>
 
+
+<script>
+(function () {
+  const btn = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('primaryNav');
+  if (!btn || !nav) return;
+
+  function setOpen(open) {
+    nav.classList.toggle('open', open);
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(!nav.classList.contains('open'));
+  });
+
+  nav.addEventListener('click', function (e) {
+    const a = e.target.closest('a');
+    if (a) setOpen(false);
+  });
+
+  document.addEventListener('click', function () { setOpen(false); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+  });
+})();
+</script>
 
 </body>
 </html>

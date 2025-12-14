@@ -25,7 +25,8 @@
                 </div>
             </a>
 
-            <nav class="nav-links">
+           <nav class="nav-links" id="primaryNav">
+
                 <a href="index.html">Home</a>
                 <a href="price.html">Price</a>
                 <a href="user-guide.html">User Guide</a>
@@ -33,20 +34,12 @@
                 <a href="contact.html">Contact</a>
             </nav>
 
-
-<button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
-  <span></span><span></span><span></span>
+<button class="nav-toggle" id="navToggle" type="button"
+        aria-label="Menu" aria-controls="primaryNav" aria-expanded="false">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
 </button>
-
-<div class="nav-drawer" id="navDrawer" aria-hidden="true">
-  <a href="index.html">Home</a>
-  <a href="price.html">Price</a>
-  <a href="user-guide.html">User Guide</a>
-  <a href="reports.html">Reports &amp; Feedback</a>
-  <a href="contact.html">Contact</a>
-</div>
-
-
 
             <div class="lang-switcher">
                 <button class="active">EN</button>
@@ -462,42 +455,34 @@
             btn.classList.add('active');
         });
     });
+
+
+
+<script>
+(() => {
+  const btn = document.getElementById('navToggle');
+  const nav = document.getElementById('primaryNav');
+  if (!btn || !nav) return;
+
+  const setOpen = (open) => {
+    nav.classList.toggle('open', open);
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setOpen(!nav.classList.contains('open'));
+  });
+
+  document.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
+
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setOpen(false);
+  });
+})();
 </script>
-
-// --- Mobile burger menu ---
-const navToggle = document.getElementById('navToggle');
-const navDrawer = document.getElementById('navDrawer');
-
-if (navToggle && navDrawer) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = navDrawer.classList.toggle('open');
-    navToggle.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    navDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-  });
-
-  // close on link click
-  navDrawer.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navDrawer.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navDrawer.setAttribute('aria-hidden', 'true');
-    });
-  });
-
-  // close on outside click
-  document.addEventListener('click', (e) => {
-    if (!navDrawer.classList.contains('open')) return;
-    const clickInside = navDrawer.contains(e.target) || navToggle.contains(e.target);
-    if (!clickInside) {
-      navDrawer.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navDrawer.setAttribute('aria-hidden', 'true');
-    }
-  });
-}
 
 
 

@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,6 @@
     <title>DocInspector Pro – Document Manager, Repair & Audit Suite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="assets/logo.png" />
 </head>
 <body>
 <div class="page">
@@ -14,30 +12,31 @@
     <!-- HEADER -->
     <header class="site-header">
         <div class="container navbar">
-            <!-- Brand = link to home -->
-            <a href="#home" class="brand">
+            <div class="brand">
                 <div class="brand-logo">
+                    <!-- 1) LOGO NOU -->
                     <img src="assets/logo.png" alt="DocInspector Pro logo">
                 </div>
                 <div class="brand-text">
                     <div class="brand-name">DocInspector Pro</div>
                     <div class="brand-subtitle">Document Manager, Repair &amp; Audit Suite</div>
                 </div>
-            </a>
-
-            <nav class="nav-links" id="primaryNav">
-                <a href="#home">Home</a>
-                <a href="#modules">Modules</a>
-                <a href="user-guide.html">User Guide</a>
-                <a href="reports.html">Reports &amp; Feedback</a>
-                <a href="contact.html">Contact</a>
-            </nav>
+            </div>
 
             <button class="nav-toggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false">
                 <span class="nav-toggle-bar"></span>
                 <span class="nav-toggle-bar"></span>
                 <span class="nav-toggle-bar"></span>
             </button>
+
+            <nav class="nav-links" id="primaryNav">
+                <a href="/#home">Home</a>
+                <a href="price.html">Price</a>
+                <a href="user-guide.html">User Guide</a>
+                <!-- 3) Bug + reviews mutat pe altă pagină -->
+                <a href="reports.html">Reports &amp; Feedback</a>
+                <a href="contact.html">Contact</a>
+            </nav>
 
             <div class="lang-switcher">
                 <button class="active">EN</button>
@@ -70,14 +69,14 @@
 
                 <div class="button-row" id="download">
                     <a href="#" class="btn btn-primary">Download trial</a>
-                    <a href="#" class="btn btn-outline">Buy license</a>
+                    <a href="price.html" class="btn btn-outline">View pricing</a>
                 </div>
                 <div class="hero-footnote">
                     No always-on agent. Runs on demand, produces exportable logs and reports.
                 </div>
             </section>
 
-            <!-- HERO SCREENSHOT – auto slider + modal -->
+            <!-- 4) HERO SCREENSHOT – click => modal cu mai multe imagini -->
             <aside class="hero-screenshot-wrapper">
                 <div class="hero-screenshot" id="guiScreenshot">
                     <img src="assets/gui-main.png" alt="DocInspector Pro main interface">
@@ -89,7 +88,7 @@
         </div>
     </main>
 
-    <!-- MODULES – 3 CATEGORIES VERTICAL -->
+    <!-- MODULES – VERTICAL, CU CARDS ÎNĂUNTRU -->
     <section id="modules" class="section">
         <div class="container">
             <header class="section-header">
@@ -102,12 +101,10 @@
 
             <div class="modules-column">
 
-                <!-- 1. PDF REPAIR & HARDENING -->
+                <!-- PDF REPAIR -->
                 <article class="module-card">
                     <div class="module-header">
-                        <div class="module-icon">
-                            <img src="assets/guide-pdf-repair.png" alt="PDF Repair &amp; Hardening">
-                        </div>
+                        <div class="module-icon">🛡️</div>
                         <div>
                             <div class="module-title">PDF Repair and Hardening</div>
                             <div class="module-tagline">
@@ -120,77 +117,74 @@
                     <div class="feature-list">
                         <div class="feature-item">
                             <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">🛠️</span>
-                                    Rebuild + OCR PDF
-                                </div>
+                                <div class="feature-name">Rebuild + OCR PDF</div>
                                 <div class="feature-desc">
-                                    Rasterizes each page at the chosen DPI, runs OCR, and rebuilds a clean, searchable PDF that
-                                    is easier to archive and share.
+                                    Rasterizes pages at the chosen DPI, runs OCR (tesseract) and rebuilds a clean, searchable PDF.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Use when you receive corrupt or very large PDFs and need a normalized, evidence-ready copy.
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-main">
+                                <div class="feature-name">Flatten to Image-Only PDF</div>
+                                <div class="feature-desc">
+                                    Creates image-only hardened PDFs – removes editable layers, comments and hidden objects.
+                                </div>
+                            </div>
+                            <div class="feature-meta">
+                                Ideal for bundles you must disclose but don’t want recipients to modify or redact further.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
                                 <div class="feature-name">
-                                    <span class="feature-icon">🖼️</span>
-                                    Flatten to Image-Only PDF
-                                </div>
-                                <div class="feature-desc">
-                                    Converts each page into a bitmap image, stripping editable layers, comments and hidden objects,
-                                    leaving only what you can literally see.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">📄</span>
                                     Office PDF Converter <span class="status-pill planned">Planned</span>
                                 </div>
                                 <div class="feature-desc">
-                                    Batch-convert Word and Excel documents to PDFs using a controlled pipeline, preserving
-                                    your folder structure.
+                                    Centralized conversion of Word and Excel files into hardened PDF, preserving folder structure.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Replace ad-hoc “Print to PDF” and keep consistent layout across the whole bundle.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">🏷️</span>
-                                    Add Watermark
-                                </div>
+                                <div class="feature-name">Add Watermark</div>
                                 <div class="feature-desc">
-                                    Apply consistent text watermarks (for example “CONFIDENTIAL” or case IDs) across a full
-                                    batch of PDFs in one go.
+                                    Apply consistent text watermarks such as “CONFIDENTIAL”, case IDs or internal routing tags.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Watermarks are burned into the pages while your original folder structure is preserved.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
                                 <div class="feature-name">
-                                    <span class="feature-icon">🔍</span>
                                     Find and Remove <span class="status-pill planned">Planned</span>
                                 </div>
                                 <div class="feature-desc">
-                                    Scan PDFs for sensitive phrases or patterns and automatically clean or redact the detected
-                                    content before disclosure.
+                                    Scan PDFs for sensitive phrases or patterns and automatically redact or strip matching content.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Adobe-style clean-up before disclosure – especially for bulk DSAR / GDPR responses.
                             </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- 2. REPORTING & EVIDENCE -->
+                <!-- REPORTING -->
                 <article class="module-card">
                     <div class="module-header">
-                        <div class="module-icon">
-                            <img src="assets/guide-reporting.png" alt="Reporting &amp; Evidence">
-                        </div>
+                        <div class="module-icon">📊</div>
                         <div>
                             <div class="module-title">Reporting and Evidence</div>
                             <div class="module-tagline">
@@ -203,51 +197,46 @@
                     <div class="feature-list">
                         <div class="feature-item">
                             <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">📊</span>
-                                    PDF Bundle Summary
-                                </div>
+                                <div class="feature-name">PDF Bundle Summary</div>
                                 <div class="feature-desc">
-                                    Scans PDFs in a folder tree and generates a simple “borderou” with file names, sizes
-                                    and page counts.
+                                    Quick overview of all PDFs in a folder tree: file names, page counts, sizes and basic metadata.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Attach the summary to your bundle or use it as an intake checklist before disclosure.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">📈</span>
-                                    Advanced Bundle Report
-                                </div>
+                                <div class="feature-name">Advanced Bundle Report</div>
                                 <div class="feature-desc">
-                                    Produces a richer Excel report including Word, Excel and other formats, with smarter
-                                    page counting and more columns.
+                                    Extended Excel report including Word, Excel and other formats in the evidence set.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Ideal for corporate, e-discovery or internal investigations where every file must be tracked.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">📁</span>
-                                    Folder Evidence Report
-                                </div>
+                                <div class="feature-name">Folder Evidence Report</div>
                                 <div class="feature-desc">
-                                    Inventories every supported file in a folder structure so you can attach the report to
-                                    legal or audit paperwork.
+                                    Maps every document in a folder structure, ready to attach to audit or incident reports.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Uses hashes, owners and timestamps to help reviewers verify integrity and provenance.
                             </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- 3. AUDIT & SECURITY -->
+                <!-- AUDIT & SECURITY -->
                 <article class="module-card">
                     <div class="module-header">
-                        <div class="module-icon">
-                            <img src="assets/guide-audit.png" alt="Audit &amp; Security">
-                        </div>
+                        <div class="module-icon">🔍</div>
                         <div>
                             <div class="module-title">Audit and Security</div>
                             <div class="module-tagline">
@@ -260,53 +249,53 @@
                     <div class="feature-list">
                         <div class="feature-item">
                             <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">🧹</span>
-                                    Sanitize Docs
-                                </div>
+                                <div class="feature-name">Sanitize Docs</div>
                                 <div class="feature-desc">
-                                    Clean metadata, comments and hidden content from supported document types in bulk,
-                                    before sending them out.
+                                    Clean metadata, comments and hidden content from supported document types in bulk.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Run before sending bundles outside your organization or uploading to third-party portals.
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-main">
+                                <div class="feature-name">Audit This PC</div>
+                                <div class="feature-desc">
+                                    Scan fixed drives and standard locations to build an inventory of potentially sensitive documents.
+                                </div>
+                            </div>
+                            <div class="feature-meta">
+                                Produces CSV / JSON exports with hashes, owners and timestamps for incident response teams.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
                                 <div class="feature-name">
-                                    <span class="feature-icon">💻</span>
-                                    Audit This PC
-                                </div>
-                                <div class="feature-desc">
-                                    Scan fixed drives and standard locations to identify and list documents that may contain
-                                    sensitive information.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="feature-item">
-                            <div class="feature-main">
-                                <div class="feature-name">
-                                    <span class="feature-icon">🗑️</span>
                                     Secure Delete + Audit Trail <span class="status-pill planned">Planned</span>
                                 </div>
                                 <div class="feature-desc">
-                                    Securely delete selected files while keeping a clear audit log of what was removed
-                                    and when.
+                                    Securely delete selected files while keeping a signed audit log for compliance.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                Targeted at environments where you must prove when specific artefacts were disposed of.
                             </div>
                         </div>
 
                         <div class="feature-item">
                             <div class="feature-main">
                                 <div class="feature-name">
-                                    <span class="feature-icon">🔐</span>
                                     Encryption <span class="status-pill planned">Planned</span>
                                 </div>
                                 <div class="feature-desc">
-                                    Package hardened bundles into encrypted containers or password-protected archives,
-                                    ready to send externally.
+                                    Package hardened bundles into encrypted containers or password-protected archives.
                                 </div>
+                            </div>
+                            <div class="feature-meta">
+                                One-click creation of “ready to ship” encrypted evidence sets for external counsel or regulators.
                             </div>
                         </div>
                     </div>
@@ -316,7 +305,7 @@
         </div>
     </section>
 
-    <!-- WORKFLOW / STORY SECTION -->
+    <!-- WORKFLOW / STORY SECTION CU IMAGINE -->
     <section id="workflow" class="section workflow-section">
         <div class="container workflow-grid">
             <div>
@@ -330,7 +319,7 @@
                     <li>Drag a matter folder into the tool, pick modules and let the suite rebuild, flatten and sanitize.</li>
                     <li>Generate Excel overviews that show every file, page count and hash – attach them directly to case files.</li>
                     <li>Detect stray documents on workstations and pull them into controlled, logged evidence locations.</li>
-                    <li>Non-PDF files (audio, images, videos) stay with the bundle so context is never lost.</li>
+                    <li>Non-PDF files (audio, images, videos) stay together with the bundle so context is never lost.</li>
                 </ul>
             </div>
 
@@ -347,8 +336,8 @@
                 <h3 class="bottom-title">How DocInspector Pro keeps your folder structure</h3>
                 <p>
                     Input and Output are separate – you always choose a clean output root. For each processed file,
-                    the original folder structure is re-created under the Output path. Non-PDF files (audio, images,
-                    archives, emails) can be copied as-is so you keep the bundle together.
+                    the original folder structure is re-created under the Output path. Non-PDF files are copied as-is
+                    (audio, images, archives, emails) so you can keep the bundle together.
                 </p>
             </article>
 
@@ -391,34 +380,11 @@
     const screenshot = document.getElementById('guiScreenshot');
     const modal = document.getElementById('screenshotModal');
 
-    // Hero GUI slider
-    const heroImage = screenshot ? screenshot.querySelector('img') : null;
-    const heroSlides = [
-        { src: 'assets/gui-main.png',  alt: 'DocInspector Pro main interface' },
-        { src: 'assets/gui-step2.png', alt: 'DocInspector Pro – processing screen' },
-        { src: 'assets/gui-step3.png', alt: 'DocInspector Pro – reporting screen' }
-    ];
-    let heroIndex = 0;
-
-    if (heroImage && heroSlides.length > 1) {
-        setInterval(() => {
-            heroIndex = (heroIndex + 1) % heroSlides.length;
-            heroImage.classList.add('fade-out');
-
-            setTimeout(() => {
-                heroImage.src = heroSlides[heroIndex].src;
-                heroImage.alt = heroSlides[heroIndex].alt;
-                heroImage.classList.remove('fade-out');
-            }, 220);
-        }, 3000);
-    }
-
     if (screenshot && modal) {
         screenshot.addEventListener('click', () => modal.classList.add('active'));
         modal.addEventListener('click', () => modal.classList.remove('active'));
     }
 
-    // Language switcher visual state
     document.querySelectorAll('.lang-switcher button').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
@@ -443,11 +409,6 @@
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
     setOpen(!nav.classList.contains('open'));
-  });
-
-  nav.addEventListener('click', function (e) {
-    const a = e.target.closest('a');
-    if (a) setOpen(false);
   });
 
   document.addEventListener('click', function () { setOpen(false); });

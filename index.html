@@ -402,87 +402,82 @@
     </div>
 </div>
 
+
 <script>
-    const screenshot = document.getElementById('guiScreenshot');
-    const modal = document.getElementById('screenshotModal');
+  // ===== HERO MODAL + SLIDER =====
+  const screenshot = document.getElementById('guiScreenshot');
+  const modal = document.getElementById('screenshotModal');
 
-    // --- HERO SLIDER LOGIC (din imaginile din modal) ---
-    const heroImage = screenshot ? screenshot.querySelector('img') : null;
+  const heroImage = screenshot ? screenshot.querySelector('img') : null;
 
-    // luăm toate imaginile din modal și le folosim ca slide-uri
-    let heroSlides = [];
-    if (modal) {
-        heroSlides = Array.from(
-            modal.querySelectorAll('.modal-images img')
-        ).map(img => ({
-            src: img.getAttribute('src'),
-            alt: img.getAttribute('alt') || ''
-        }));
-    }
+  let heroSlides = [];
+  if (modal) {
+    heroSlides = Array.from(modal.querySelectorAll('.modal-images img')).map(img => ({
+      src: img.getAttribute('src'),
+      alt: img.getAttribute('alt') || ''
+    }));
+  }
 
-    let heroIndex = 0;
+  let heroIndex = 0;
 
-    // dacă avem mai mult de 1 imagine => facem slider
-    if (heroImage && heroSlides.length > 1) {
-        // setăm prima imagine din listă
-        heroImage.src = heroSlides[0].src;
-        heroImage.alt = heroSlides[0].alt;
+  // Slider doar dacă există 2+ imagini
+  if (heroImage && heroSlides.length > 1) {
+    heroImage.src = heroSlides[0].src;
+    heroImage.alt = heroSlides[0].alt;
 
-        setInterval(() => {
-            heroIndex = (heroIndex + 1) % heroSlides.length;
+    setInterval(() => {
+      heroIndex = (heroIndex + 1) % heroSlides.length;
+      heroImage.classList.add('fade-out');
 
-            heroImage.classList.add('fade-out');
+      setTimeout(() => {
+        heroImage.src = heroSlides[heroIndex].src;
+        heroImage.alt = heroSlides[heroIndex].alt;
+        heroImage.classList.remove('fade-out');
+      }, 220);
+    }, 6000);
+  }
 
-            setTimeout(() => {
-                heroImage.src = heroSlides[heroIndex].src;
-                heroImage.alt = heroSlides[heroIndex].alt;
-                heroImage.classList.remove('fade-out');
-            }, 220);
-        }, 6000); // 6 secunde
-    }
-    // dacă heroSlides.length === 1 sau 0, imaginea rămâne statică
+  // Modal open/close
+  if (screenshot && modal) {
+    screenshot.addEventListener('click', () => modal.classList.add('active'));
+    modal.addEventListener('click', () => modal.classList.remove('active'));
+  }
 
-    // --- MODAL OPEN/CLOSE ---
-    if (screenshot && modal) {
-        screenshot.addEventListener('click', () => modal.classList.add('active'));
-        modal.addEventListener('click', () => modal.classList.remove('active'));
-    }
+  // ===== Language switcher (vizual) =====
+  document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
 
-    // --- Language switcher vizual ---
-    document.querySelectorAll('.lang-switcher button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-        });
+  // ===== Mobile burger menu =====
+  (() => {
+    const btn = document.getElementById('navToggle');
+    const nav = document.getElementById('primaryNav');
+    if (!btn || !nav) return;
+
+    const setOpen = (open) => {
+      nav.classList.toggle('open', open);
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setOpen(!nav.classList.contains('open'));
     });
 
+    document.addEventListener('click', () => setOpen(false));
+    document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
 
-
-<script>
-(() => {
-  const btn = document.getElementById('navToggle');
-  const nav = document.getElementById('primaryNav');
-  if (!btn || !nav) return;
-
-  const setOpen = (open) => {
-    nav.classList.toggle('open', open);
-    btn.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  };
-
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    setOpen(!nav.classList.contains('open'));
-  });
-
-  document.addEventListener('click', () => setOpen(false));
-  document.addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
-
-  nav.addEventListener('click', (e) => {
-    if (e.target.closest('a')) setOpen(false);
-  });
-})();
+    nav.addEventListener('click', (e) => {
+      if (e.target.closest('a')) setOpen(false);
+    });
+  })();
 </script>
+
 
 
 

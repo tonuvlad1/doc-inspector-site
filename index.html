@@ -38,6 +38,17 @@
                 <a href="contact.html">Contact</a>
             </nav>
 
+<button class="nav-toggle" type="button"
+        aria-label="Open menu"
+        aria-controls="primaryNav"
+        aria-expanded="false">
+  <span class="nav-toggle-bar"></span>
+  <span class="nav-toggle-bar"></span>
+  <span class="nav-toggle-bar"></span>
+</button>
+
+
+
             <div class="lang-switcher">
                 <button class="active">EN</button>
                 <button>RO</button>
@@ -395,28 +406,33 @@
 
 
 <script>
-(function () {
+(() => {
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('primaryNav');
   if (!btn || !nav) return;
 
-  function setOpen(open) {
+  const setOpen = (open) => {
     nav.classList.toggle('open', open);
     btn.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
+  };
 
-  btn.addEventListener('click', function (e) {
+  btn.addEventListener('click', (e) => {
     e.stopPropagation();
     setOpen(!nav.classList.contains('open'));
   });
 
-  document.addEventListener('click', function () { setOpen(false); });
-  document.addEventListener('keydown', function (e) {
+  document.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setOpen(false);
+  });
+
+  nav.addEventListener('click', (e) => {
+    if (e.target.closest('a')) setOpen(false);
   });
 })();
 </script>
+
 
 </body>
 </html>

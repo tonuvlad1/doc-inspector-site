@@ -13,9 +13,8 @@
 
     <!-- HEADER -->
     <header class="site-header">
-        <div class="container navbar">
-            <!-- Brand = link to home -->
-            <a href="index.html" class="brand">
+  <div class="navbar">
+    <a href="index.html" class="brand">
                 <div class="brand-logo">
                     <img src="assets/logo.png" alt="DocInspector logo">
                 </div>
@@ -24,8 +23,7 @@
                     <div class="brand-subtitle">Document Manager, Repair &amp; Audit Suite</div>
                 </div>
             </a>
-
-           <nav class="nav-links" id="primaryNav">
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
 
                 <a href="index.html">Home</a>
                 <a href="price.html">Price</a>
@@ -33,17 +31,8 @@
                 <a href="reports.html">Reports &amp; Feedback</a>
                 <a href="contact.html">Contact</a>
             </nav>
-
-<button class="nav-toggle" id="navToggle" type="button"
-        aria-label="Menu" aria-controls="primaryNav" aria-expanded="false">
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
-</button>
-
-
-          <div class="nav-actions">
-  <div class="lang-dropdown" id="langDropdown">
+    <div class="nav-actions">
+      <div class="lang-dropdown" id="langDropdown">
     <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false">
       <span class="lang-pill">EN</span>
       <span class="chev">▾</span>
@@ -55,19 +44,12 @@
       <button class="lang-item" data-lang="RU" role="menuitem">RU</button>
     </div>
   </div>
-
-  <button class="nav-toggle" id="navToggle" type="button"
-          aria-label="Menu" aria-controls="primaryNav" aria-expanded="false">
-    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-  </button>
-</div>
-
-        
-
-
-
-</div>
-    </header>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
 
     <!-- HERO -->
     <main id="home" class="hero">
@@ -528,6 +510,49 @@
 
 
 
+
+
+<script>
+(() => {
+  const navToggle = document.getElementById('navToggle');
+  const navLinks  = document.getElementById('navLinks');
+  if (!navToggle || !navLinks) return;
+
+  const closeMenu = () => {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
+  };
+
+  const openMenu = () => {
+    navLinks.classList.add('open');
+    navToggle.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-open');
+  };
+
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navLinks.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  // Close when tapping outside
+  document.addEventListener('click', (e) => {
+    if (!navLinks.classList.contains('open')) return;
+    const inside = navLinks.contains(e.target) || navToggle.contains(e.target);
+    if (!inside) closeMenu();
+  });
+
+  // Close after clicking a link
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+  // Close on resize back to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) closeMenu();
+  });
+})();
+</script>
 
 </body>
 </html>

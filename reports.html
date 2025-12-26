@@ -285,6 +285,36 @@
 })();
 </script>
 
+<script>
+(() => {
+  const f = document.getElementById('reportForm');
+  if (!f) return;
+
+  const endpoint = "https://formspree.io/f/xreggdqk";
+
+  const ts = document.getElementById('report_ts');
+  if (ts) ts.value = Date.now().toString();
+
+  f.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const started = parseInt((ts && ts.value) || "0", 10);
+    if (started && (Date.now() - started) < 3000) return;
+
+    const hp = f.querySelector('input[name="company"]');
+    if (hp && hp.value.trim() !== "") return;
+
+    const res = await fetch(endpoint, {
+      method: "POST",
+      body: new FormData(f),
+      headers: { "Accept": "application/json" }
+    });
+
+    if (res.ok) window.location.href = "/thanks.html";
+    else alert("Submit failed. Try again.");
+  });
+})();
+</script>
 
 
 </body>

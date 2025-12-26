@@ -72,9 +72,28 @@
             <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.9fr);gap:2rem;align-items:flex-start;">
 
                 <!-- FORM REPORT -->
-                <form method="post" action="#"
-                      style="background:rgba(5,18,32,0.9);border-radius:16px;padding:1.2rem 1.2rem 1.35rem;
-                             border:1px solid rgba(61,131,182,0.7);box-shadow:0 18px 40px rgba(0,0,0,0.9);font-size:0.86rem;">
+                <form method="post"
+      action="https://formspree.io/f/xreggdqk"
+      enctype="multipart/form-data"
+      id="reportForm"
+      style="background:rgba(5,18,32,0.9);border-radius:16px;padding:1.2rem 1.2rem 1.35rem;
+             border:1px solid rgba(61,131,182,0.7);box-shadow:0 18px 40px rgba(0,0,0,0.9);font-size:0.86rem;">
+
+
+<input type="hidden" name="_subject" value="Report – DocInspector">
+<input type="hidden" name="_next" value="thanks.html">
+<input type="hidden" name="_captcha" value="false">
+
+<!-- Anti-spam (honeypot) -->
+<div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+  <label>Leave this empty</label>
+  <input type="text" name="company" tabindex="-1" autocomplete="off">
+</div>
+
+<!-- Time-gate token -->
+<input type="hidden" name="form_ts" id="report_ts">
+
+
 
                     <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
                         <label for="email" style="font-size:0.8rem;color:#c9e0ff;">Email (for follow-up)</label>
@@ -121,11 +140,13 @@
                     </div>
 
                     <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.9rem;">
-                        <label for="files" style="font-size:0.8rem;color:#c9e0ff;">Logs / screenshots (optional)</label>
-                        <input id="files" name="files" type="file" multiple
-                               style="border-radius:8px;border:1px solid rgba(88,131,176,0.8);background:#030b15;
-                                      color:#e5f6ff;padding:0.3rem 0.45rem;font:inherit;">
-                    </div>
+  <label for="attachments" style="font-size:0.8rem;color:#c9e0ff;">Attachments (paste links)</label>
+  <textarea id="attachments" name="attachments_links" rows="3"
+    placeholder="Paste Google Drive / OneDrive / Dropbox links here..."
+    style="border-radius:8px;border:1px solid rgba(88,131,176,0.8);background:#030b15;
+           color:#e5f6ff;padding:0.45rem 0.55rem;font:inherit;resize:vertical;"></textarea>
+</div>
+
 
                     <button type="submit" class="btn btn-primary">Submit report</button>
                 </form>
@@ -238,6 +259,32 @@
     });
   })();
 </script>
+
+<script>
+(() => {
+  const f = document.getElementById('reportForm');
+  if (!f) return;
+
+  const ts = document.getElementById('report_ts');
+  if (ts) ts.value = Date.now().toString();
+
+  f.addEventListener('submit', (e) => {
+    const started = parseInt((ts && ts.value) || "0", 10);
+    if (started && (Date.now() - started) < 3000) {
+      e.preventDefault();
+      alert("Please wait 3 seconds and try again.");
+      return;
+    }
+
+    const hp = f.querySelector('input[name="company"]');
+    if (hp && hp.value.trim() !== "") {
+      e.preventDefault();
+      return;
+    }
+  });
+})();
+</script>
+
 
 
 </body>

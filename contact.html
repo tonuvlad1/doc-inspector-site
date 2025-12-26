@@ -71,10 +71,28 @@
             <div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,0.9fr);gap:2rem;align-items:flex-start;">
 
                 <!-- CONTACT FORM -->
-                <form method="post" action="#"
-                      style="background:rgba(5,18,32,0.9);border-radius:16px;padding:1.2rem 1.2rem 1.35rem;
-                             border:1px solid rgba(61,131,182,0.7);box-shadow:0 18px 40px rgba(0,0,0,0.9);font-size:0.86rem;">
+                <form method="post"
+      action="https://formspree.io/f/xreggdqk"
+      id="contactForm"
+      style="background:rgba(5,18,32,0.9);border-radius:16px;padding:1.2rem 1.2rem 1.35rem;
+             border:1px solid rgba(61,131,182,0.7);box-shadow:0 18px 40px rgba(0,0,0,0.9);font-size:0.86rem;">
+
                     
+<input type="hidden" name="_subject" value="Contact – DocInspector">
+<input type="hidden" name="_next" value="thanks.html">
+
+<!-- Anti-spam (honeypot) -->
+<div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+  <label>Leave this empty</label>
+  <input type="text" name="company" tabindex="-1" autocomplete="off">
+</div>
+
+<!-- Time-gate token -->
+<input type="hidden" name="form_ts" id="form_ts">
+<input type="hidden" name="_captcha" value="false">
+
+
+
                     <div style="display:flex;flex-direction:column;gap:0.25rem;margin-bottom:0.75rem;">
                         <label for="name" style="font-size:0.8rem;color:#c9e0ff;">Your name</label>
                         <input id="name" name="name" type="text" required placeholder="John Doe"
@@ -113,6 +131,9 @@
 
                     <button type="submit" class="btn btn-primary" style="margin-top:0.6rem;">Send message</button>
                 </form>
+
+
+
 
 
                 <!-- SIDE CONTACT INFO -->
@@ -237,6 +258,32 @@
   })();
 </script>
 
+<script>
+(() => {
+  const f = document.getElementById('contactForm');
+  if (!f) return;
+
+  const ts = document.getElementById('form_ts');
+  if (ts) ts.value = Date.now().toString();
+
+  f.addEventListener('submit', (e) => {
+    // time gate: block ultra-fast bot submits (< 3s)
+    const started = parseInt((ts && ts.value) || "0", 10);
+    if (started && (Date.now() - started) < 3000) {
+      e.preventDefault();
+      alert("Please wait 3 seconds and try again.");
+      return;
+    }
+
+    // honeypot: if filled => block silently
+    const hp = f.querySelector('input[name="company"]');
+    if (hp && hp.value.trim() !== "") {
+      e.preventDefault();
+      return;
+    }
+  });
+})();
+</script>
 
 
 </body>

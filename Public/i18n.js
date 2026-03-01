@@ -1,61 +1,52 @@
 // i18n.js
-(() => {
-  const LANG_KEY = "siteLang";
-  const allowed = new Set(["EN", "RO", "RU"]);
+(function () {
+  function applyTranslations() {
+    const lang = localStorage.getItem('docinsp_lang') || 'EN';
+    const dict = (window.I18N && window.I18N[lang]) ? window.I18N[lang] : (window.I18N ? window.I18N.EN : {});
 
-  function normalizeLang(x) {
-    const v = (x || "").toUpperCase();
-    return allowed.has(v) ? v : "EN";
-  }
+    if (!dict) return;
 
-  function getLang() {
-    return normalizeLang(localStorage.getItem(LANG_KEY) || "EN");
-  }
-
-  function setLang(lang) {
-    const v = normalizeLang(lang);
-    localStorage.setItem(LANG_KEY, v);
-    applyLang(v);
-    updateLangUI(v);
-  }
-
-  function t(lang, key) {
-    const dict = (window.I18N && window.I18N[lang]) || {};
-    return dict[key];
-  }
-
-  function applyLang(lang) {
-    document.documentElement.setAttribute("lang", lang === "RO" ? "ro" : (lang === "RU" ? "ru" : "en"));
-
-    // textContent
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.getAttribute("data-i18n");
-      const val = t(lang, key);
-      if (typeof val === "string") el.textContent = val;
+    // Plain text
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
     });
 
-    // placeholders
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-      const key = el.getAttribute("data-i18n-placeholder");
-      const val = t(lang, key);
-      if (typeof val === "string") el.setAttribute("placeholder", val);
+    // HTML content (for spans, bold text, etc.)
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (dict[key]) el.innerHTML = dict[key];
+    });
+
+    // Placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key]) el.setAttribute('placeholder', dict[key]);
+    });
+
+    // Update active state in dropdown UI if it exists
+    const pill = document.querySelector('.lang-pill');
+    if (pill) pill.textContent = lang;
+
+    document.querySelectorAll('.lang-item').forEach(item => {
+      item.classList.toggle('active', item.getAttribute('data-lang') === lang);
     });
   }
 
-  function updateLangUI(lang) {
-    document.querySelectorAll(".lang-pill").forEach(p => p.textContent = lang);
-    document.querySelectorAll(".lang-menu .lang-item").forEach(btn => {
-      const v = normalizeLang(btn.getAttribute("data-lang") || btn.textContent);
-      btn.classList.toggle("active", v === lang);
-    });
+  window.__i18n = {
+    setLang: (lang) => {
+      localStorage.setItem('docinsp_lang', lang);
+      applyTranslations();
+      // Dispatch event for other components
+      window.dispatchEvent(new CustomEvent('langChanged', { detail: lang }));
+    },
+    getLang: () => localStorage.getItem('docinsp_lang') || 'EN'
+  };
+
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyTranslations);
+  } else {
+    applyTranslations();
   }
-
-  // Expose for existing dropdown JS to call
-  window.__i18n = { getLang, setLang, applyLang };
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const lang = getLang();
-    applyLang(lang);
-    updateLangUI(lang);
-  });
 })();

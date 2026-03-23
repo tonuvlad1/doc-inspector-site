@@ -13,22 +13,22 @@
       "version": "2.2.1",
       "date": "March 23, 2026",
       "changes_en": [
-        "- Metadata Leak Fortified: Expanded exact PDF XMP streams definitions (Author, Producer, Creator), so Sanitize now leaves files strictly bare even on individual selection checkboxes.",
-        "- Unclaimed File Logic Alignment: Unclaimed items now participate in full sanitize buffers fully back to back.",
-        "- Visual Roadmap alignment: Modified the Roadmap simulator triggers so it correctly lists Sanitize corresponding with execution linear streams flawlessly.",
-        "- License Parameter Fix: Resolved length limits absolute."
+        "Metadata Leak Fortified: Expanded exact PDF XMP streams definitions (Author, Producer, Creator), so Sanitize now leaves files strictly bare even on individual selection checkboxes.",
+        "Unclaimed File Logic Alignment: Unclaimed items now participate in full sanitize buffers fully back to back.",
+        "Visual Roadmap alignment: Modified the Roadmap simulator triggers so it correctly lists Sanitize corresponding with execution linear streams flawlessly.",
+        "License Parameter Fix: Resolved length limits absolute."
       ],
       "changes_ro": [
-        "- Fortificarea scurgerilor de metadate: Au fost extinse definițiile exacte ale fluxurilor PDF XMP (Author, Producer, Creator), astfel încât funcția Sanitize să lase acum fișierele complet curate, chiar și în cazul selecției individuale prin checkbox-uri.",
-        "- Alinierea logicii fișierelor neatribuite: Elementele neatribuite participă acum complet la bufferele de sanitizare, consecutiv și fără întreruperi.",
-        "- Alinierea foii de parcurs vizuale: Au fost modificate trigger-ele simulatorului Roadmap, astfel încât acesta să afișeze corect Sanitize, în corespondență perfectă cu fluxurile liniare de execuție.",
-        "- Corectarea parametrului de licență: Limitele absolute de lungime au fost rezolvate."
+        "Fortificarea scurgerilor de metadate: Au fost extinse definițiile exacte ale fluxurilor PDF XMP (Author, Producer, Creator), astfel încât funcția Sanitize să lase acum fișierele complet curate, chiar și în cazul selecției individuale prin checkbox-uri.",
+        "Alinierea logicii fișierelor neatribuite: Elementele neatribuite participă acum complet la bufferele de sanitizare, consecutiv și fără întreruperi.",
+        "Alinierea foii de parcurs vizuale: Au fost modificate trigger-ele simulatorului Roadmap, astfel încât acesta să afișeze corect Sanitize, în corespondență perfectă cu fluxurile liniare de execuție.",
+        "Corectarea parametrului de licență: Limitele absolute de lungime au fost rezolvate."
       ],
       "changes_ru": [
-        "- Усилена защита от утечки метаданных: были расширены точные определения потоков PDF XMP (Author, Producer, Creator), поэтому функция Sanitize теперь оставляет файлы полностью очищенными, даже при индивидуальном выборе через флажки.",
-        "- Выравнивание логики необработанных файлов: необработанные элементы теперь полностью участвуют в буферах санитизации последовательно, без разрывов.",
-        "- Выравнивание визуальной дорожной карты: были изменены триггеры симулятора Roadmap, чтобы он корректно отображал Sanitize в точном соответствии с линейными потоками выполнения.",
-        "- Исправление параметра лицензии: абсолютные ограничения длины устранены."
+        "Усилена защита от утечки метаданных: были расширены точные определения потоков PDF XMP (Author, Producer, Creator), поэтому функция Sanitize теперь оставляет файлы полностью очищенными, даже при индивидуальном выборе через флажки.",
+        "Выравнивание логики необработанных файлов: необработанные элементы теперь полностью участвуют в буферах санитизации последовательно, без разрывов.",
+        "Выравнивание визуальной дорожной карты: были изменены триггеры симулятора Roadmap, чтобы он корректно отображал Sanitize в точном соответствии с линейными потоками выполнения.",
+        "Исправление параметра лицензии: абсолютные ограничения длины устранены."
       ]
     },
 
@@ -41,19 +41,19 @@
       "version": "2.2.0",
       "date": "March 17, 2026",
       "changes_en": [
-        "Performance Improvements:",
-        "- Fixed OCR Micro-thrashing: Lifted static image memory cap thresholds in OcrEngine.cs that choked 600 DPI processing into loop-stuck disk buffers.",
-        "- Dynamic Buffering: Processes safely utilize available total RAM dynamically scaling with host workstation power."
+        "   Performance Improvements:",
+        "Fixed OCR Micro-thrashing: Lifted static image memory cap thresholds in OcrEngine.cs that choked 600 DPI processing into loop-stuck disk buffers.",
+        "Dynamic Buffering: Processes safely utilize available total RAM dynamically scaling with host workstation power."
       ],
       "changes_ro": [
-        "Îmbunătățiri de performanță:",
-        "- S-a remediat micro-thrashing-ul OCR: au fost ridicate pragurile statice ale limitelor de memorie pentru imagini în OcrEngine.cs, care sufocau procesarea la 600 DPI și o blocau în bucle de buffering pe disc.",
-        "- Bufferizare dinamică: procesele pot utiliza în siguranță memoria RAM totală disponibilă, scalându-se dinamic în funcție de puterea stației de lucru gazdă."
+        "   Îmbunătățiri de performanță:",
+        "S-a remediat micro-thrashing-ul OCR: au fost ridicate pragurile statice ale limitelor de memorie pentru imagini în OcrEngine.cs, care sufocau procesarea la 600 DPI și o blocau în bucle de buffering pe disc.",
+        "Bufferizare dinamică: procesele pot utiliza în siguranță memoria RAM totală disponibilă, scalându-se dinamic în funcție de puterea stației de lucru gazdă."
       ],
       "changes_ru": [
-        "Улучшения производительности:",
-        "- Исправлен micro-thrashing OCR: были повышены статические пороги лимитов памяти для изображений в OcrEngine.cs, которые перегружали обработку 600 DPI и приводили к зацикливанию буферов на диске.",
-        "- Динамическая буферизация: процессы могут безопасно использовать всю доступную оперативную память, динамически масштабируясь в зависимости от мощности хостовой рабочей станции."
+        "   Улучшения производительности:",
+        "Исправлен micro-thrashing OCR: были повышены статические пороги лимитов памяти для изображений в OcrEngine.cs, которые перегружали обработку 600 DPI и приводили к зацикливанию буферов на диске.",
+        "Динамическая буферизация: процессы могут безопасно использовать всю доступную оперативную память, динамически масштабируясь в зависимости от мощности хостовой рабочей станции."
       ]
     },
 

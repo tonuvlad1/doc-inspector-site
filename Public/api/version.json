@@ -1,10 +1,41 @@
 {
-  "version": "2.2.0",
-  "last_update": "2026-03-17T17:15",
+  "version": "2.2.1",
+  "last_update": "2026-03-23T11:30",
   "download_url": "https://github.com/doc-inspector/install/releases/download/last_update/DocInspector_Setup.exe",
   "history": [
 
 
+
+
+
+
+{
+      "version": "2.2.1",
+      "date": "March 23, 2026",
+      "changes_en": [
+        "- Metadata Leak Fortified: Expanded exact PDF XMP streams definitions (Author, Producer, Creator), so Sanitize now leaves files strictly bare even on individual selection checkboxes.",
+        "- Unclaimed File Logic Alignment: Unclaimed items now participate in full sanitize buffers fully back to back.",
+        "- Visual Roadmap alignment: Modified the Roadmap simulator triggers so it correctly lists Sanitize corresponding with execution linear streams flawlessly.",
+        "- License Parameter Fix: Resolved length limits absolute."
+      ],
+      "changes_ro": [
+        "- Fortificarea scurgerilor de metadate: Au fost extinse definițiile exacte ale fluxurilor PDF XMP (Author, Producer, Creator), astfel încât funcția Sanitize să lase acum fișierele complet curate, chiar și în cazul selecției individuale prin checkbox-uri.",
+        "- Alinierea logicii fișierelor neatribuite: Elementele neatribuite participă acum complet la bufferele de sanitizare, consecutiv și fără întreruperi.",
+        "- Alinierea foii de parcurs vizuale: Au fost modificate trigger-ele simulatorului Roadmap, astfel încât acesta să afișeze corect Sanitize, în corespondență perfectă cu fluxurile liniare de execuție.",
+        "- Corectarea parametrului de licență: Limitele absolute de lungime au fost rezolvate."
+      ],
+      "changes_ru": [
+        "- Усилена защита от утечки метаданных: были расширены точные определения потоков PDF XMP (Author, Producer, Creator), поэтому функция Sanitize теперь оставляет файлы полностью очищенными, даже при индивидуальном выборе через флажки.",
+        "- Выравнивание логики необработанных файлов: необработанные элементы теперь полностью участвуют в буферах санитизации последовательно, без разрывов.",
+        "- Выравнивание визуальной дорожной карты: были изменены триггеры симулятора Roadmap, чтобы он корректно отображал Sanitize в точном соответствии с линейными потоками выполнения.",
+        "- Исправление параметра лицензии: абсолютные ограничения длины устранены."
+      ]
+    },
+
+
+
+
+    
 
 {
       "version": "2.2.0",
